@@ -1,0 +1,105 @@
+body {
+    background-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px;
+}
+
+header {
+    padding-top: 15px;
+    border-bottom: 10px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    margin-bottom: 10px;
+    border-radius: 7px;
+    background-color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+
+header #logo {
+    display: block;
+    font-size: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+header .user-actions {
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
+    text-decoration: none;
+}
+
+header .welcome-line {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+    text-decoration: none;
+}
+
+
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px auto;
+}
+form h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+form p {
+    margin-top: 2px;
+}
+#login-form {
+    width: 266px;
+}
+
+#register-form {
+    width: 316px;
+}
+
+form label {
+    display: inline-block;
+    text-align: right;
+    margin-right: 5px;
+}
+
+#login-form label {
+    width: 100px;
+}
+#register-form label {
+    width: 150px;
+}
+
+form .form-actions {
+    float: right;
+    text-align: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.errorlist {
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+}
+
+#login-form .errorlist {
+    margin-left: 110px;
+}
+
+#register-form .errorlist {
+    margin-left: 160px;
+}
+

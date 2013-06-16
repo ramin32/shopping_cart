@@ -2,13 +2,12 @@
 
 {% block body %}
 
-<form action="." method="POST" id="login-form">
-    <h2>Login</h2>
+<form action="." method="POST" id="register-form">
+    <h2>Sign Up</h2>
     {% csrf_token %}
     {{ form.as_p }}
     <div class="form-actions">
-        <a href="{% url 'register'%}">Sign Up</a>
-        <input type="submit" value="Login"/>
+        <input type="submit" value="Sign Up"/>
     </div>
     <div class="clear"></div>
 </form>

@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+
+{% for product in products %}
+    <div class="product">
+        <a href="">{{product.name}}</a>
+        <img src="{{ product.image.url }}"/>
+        <div class="description">
+            {{ product.description }}
+        </div>
+        <div class="price">
+            ${{ product.price }}
+        </div>
+        <a href="add_to_cart">Add to Cart</a>
+    </div>
+{% endfor %}
+{% endblock %}

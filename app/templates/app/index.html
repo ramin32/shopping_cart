@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+
+{% for store in stores %}
+    <div>
+        <a href="">{{store.name}}</a>
+    </div>
+{% endfor %}
+{% endblock %}
