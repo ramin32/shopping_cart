@@ -15,7 +15,7 @@
             <div class="price">
                 ${{ product.price }}
             </div>
-            <a href="add_to_cart">Add to Cart</a>
+            <a class="add-to-cart" href="{% url 'add_to_cart' store.name product.id %}">Add to Cart</a>
         </div>
     {% endfor %}
 </div>

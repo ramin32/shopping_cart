@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 
 from django import forms
+from app import models
 
 
 class LoginForm(forms.Form):
@@ -33,4 +34,9 @@ class RegisterForm(forms.Form):
         if self.cleaned_data.get('password') != self.cleaned_data.get('confirm_password'):
             raise forms.ValidationError("Passwords don't match!")
         return self.cleaned_data.get('confirm_password')
+
+class BillingInformationForm(forms.ModelForm):
+    class Meta:
+        model = models.BillingInformation
+
                                             

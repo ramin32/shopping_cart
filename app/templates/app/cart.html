@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block body %}
+
+<div id="cart">
+    <h1> Your Cart </h1>
+
+    <div class="products">
+        {% for product in cart.products.all %}
+            <div class="product">
+                <a href="">{{product.name}}</a>
+                <img src="{{ product.image.url }}"/>
+                <div class="description">
+                    {{ product.description }}
+                </div>
+                <div class="price">
+                    ${{ product.price }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="cart-actions">
+        Total: ${{cart.total}}
+        <a href="{% url 'checkout_cart' store.name %}" class="checkout">Checkout!</a>
+    </div>
+</div>
+
+{% endblock %}
