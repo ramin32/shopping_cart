@@ -1,4 +1,4 @@
-{% extends 'app/base.html' %}
+{% extends 'base.html' %}
 
 {% block body %}
 
@@ -7,7 +7,7 @@
 
     {% for product in store.product_set.all %}
         <div class="product">
-            <a href="">{{product.name}}</a>
+            {{product.name}}
             <img src="{{ product.image.url }}"/>
             <div class="description">
                 {{ product.description }}

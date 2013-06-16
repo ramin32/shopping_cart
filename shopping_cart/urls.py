@@ -1,23 +1,21 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 from django.conf.urls.static import static
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.views.generic import RedirectView
+from django.core.urlresolvers import reverse
+
 admin.autodiscover()
 
+from stores.views import index
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'shopping_cart.views.home', name='home'),
-    # url(r'^shopping_cart/', include('shopping_cart.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('app.urls')),
 
+    url(r'^users/', include('users.urls')),
+    url(r'^stores/', include('stores.urls')),
+
+    url(r'^$', index, name='index'),
 )
 
 if settings.DEBUG:
