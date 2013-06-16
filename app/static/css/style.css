@@ -30,6 +30,11 @@ header #logo {
     font-family: Verdana, Geneva, sans-serif;
 }
 
+header #logo a {
+    color: black;
+    text-decoration: none;
+}
+
 header .user-actions {
     position: absolute;
     right: 5px;
@@ -103,3 +108,12 @@ form .form-actions {
     margin-left: 160px;
 }
 
+#store .product {
+    display: inline-block;
+    width: 100px;
+    border: 1px solid black;
+}
+
+#store .product img {
+    width: 100%;
+}

@@ -2,17 +2,22 @@
 
 {% block body %}
 
-{% for product in products %}
-    <div class="product">
-        <a href="">{{product.name}}</a>
-        <img src="{{ product.image.url }}"/>
-        <div class="description">
-            {{ product.description }}
+<div id="store">
+    <h1> {{store.name}} </h1>
+
+    {% for product in store.product_set.all %}
+        <div class="product">
+            <a href="">{{product.name}}</a>
+            <img src="{{ product.image.url }}"/>
+            <div class="description">
+                {{ product.description }}
+            </div>
+            <div class="price">
+                ${{ product.price }}
+            </div>
+            <a href="add_to_cart">Add to Cart</a>
         </div>
-        <div class="price">
-            ${{ product.price }}
-        </div>
-        <a href="add_to_cart">Add to Cart</a>
-    </div>
-{% endfor %}
+    {% endfor %}
+</div>
+
 {% endblock %}
