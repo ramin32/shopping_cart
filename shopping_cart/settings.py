@@ -147,5 +147,5 @@ LOGGING = {
     }
 }
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/users/login/'
 

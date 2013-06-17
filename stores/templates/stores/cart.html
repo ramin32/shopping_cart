@@ -3,19 +3,21 @@
 {% block body %}
 
 <div id="cart">
-    <h1> Your Cart </h1>
+    <h1><a href="{% url 'store' store.name %}">{{store.name}}</a> >> Your Cart </h1>
 
     <div class="products">
-        {% for product in cart.products.all %}
+        {% for product_quantity in cart.productquantities_set.all %}
             <div class="product">
-                <a href="">{{product.name}}</a>
-                <img src="{{ product.image.url }}"/>
+                {{product_quantity.product.name}}
+                <img src="{{ product_quantity.product.image.url }}"/>
                 <div class="description">
-                    {{ product.description }}
+                    {{ product_quantity.product.description }}
                 </div>
                 <div class="price">
-                    ${{ product.price }}
+                    {{ product_quantity.quantity }} X ${{ product_quantity.product.price }}
                 </div>
+
+                <a class="remove-from-cart" href="{% url 'remove_from_cart' store.name product_quantity.product.id %}">Remove</a>
             </div>
         {% endfor %}
     </div>
