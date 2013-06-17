@@ -15,7 +15,13 @@
             <div class="price">
                 ${{ product.price }}
             </div>
-            <a class="add-to-cart" href="{% url 'add_to_cart' store.name product.id %}">Add to Cart</a>
+            <div>
+                In stock: <span class="quantity-in-stock">{{ product.quantity }}</span>
+            </div>
+            {% if product.quantity >= 0 %}
+                <a class="add-to-cart" href="{% url 'add_to_cart' store.name product.id %}">Add to Cart</a>
+            {% endif %}
+
         </div>
     {% endfor %}
 </div>

@@ -4,6 +4,21 @@ body {
     margin: 10px;
 }
 
+a {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.flash {
+    background-color: yellow;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
 header {
     padding-top: 15px;
     border-bottom: 10px solid #000;
@@ -22,7 +37,6 @@ header {
 header #logo {
     display: block;
     font-size: 40px;
-    text-decoration: none;
     font-weight: bold;
     color: black;
     padding-left: 20px;
@@ -32,21 +46,24 @@ header #logo {
 
 header #logo a {
     color: black;
-    text-decoration: none;
 }
+
+header .welcome-line a,
+header .user-actions a {
+    color: rgb(63, 63, 255);
+}
+
 
 header .user-actions {
     position: absolute;
     right: 5px;
     top: 2px;
-    text-decoration: none;
 }
 
 header .welcome-line {
     position: absolute;
     right: 5px;
     bottom: 2px;
-    text-decoration: none;
 }
 
 
@@ -56,7 +73,14 @@ form {
     padding: 10px 20px;
     margin: 10px auto;
 }
-form h2 {
+
+form.single-button-form {
+    background-color: inherit;
+    border-radius: inherit;
+    padding: inherit;
+    margin: inherit;
+}
+h2 {
     text-align: center;
     font-weight: bold;
     font-size: 16px;
@@ -83,6 +107,29 @@ form label {
 }
 #register-form label {
     width: 150px;
+}
+
+#checkout-form label {
+    width: 154px;
+}
+
+#checkout-form .errorlist {
+    margin-left: 162px;
+}
+
+#checkout-form {
+    width: 325px;
+}
+#checkout-form input[type="submit"] {
+    margin-left: 162px;
+}
+
+#checkout-form input,
+#checkout-form select {
+    width: 150px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 form .form-actions {
@@ -118,19 +165,28 @@ form .form-actions {
 }
 
 #store h1,
-#cart h1 {
+#cart h1,
+#order h1 {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
 }
 
-#cart .cart-actions {
+#cart .cart-actions,
+#order .order-actions {
+
     font-weight: bold;
     border-top: 1px solid black;
     margin-top: 10px;
+    padding-top: 5px;
 }
 
 #cart .cart-actions .checkout {
     float: right;
 }
+
+#order .billing-information {
+    border-top: 1px solid black;
+}
+
 

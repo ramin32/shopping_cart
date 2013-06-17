@@ -23,7 +23,18 @@
     </div>
     <div class="cart-actions">
         Total: ${{cart.total}}
-        <a href="{% url 'checkout_cart' store.name %}" class="checkout">Checkout!</a>
+        {% if cart.products.all %}
+            <a href="#checkout" class="checkout" id="checkout-form-toggle">Checkout</a>
+            <form id="checkout-form" {% if not checkout_form.errors %} class="hidden" {% endif %} 
+                  method="post" 
+                  action="{% url 'checkout_cart' store.name %}">
+                <h2>Payment Information</h2>
+                {% csrf_token %}
+                {{ checkout_form.as_p }}
+                <input type="submit" value="Checkout"/>
+                <div class="clear"></div>
+            </form>
+        {% endif %}
     </div>
 </div>
 

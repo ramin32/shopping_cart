@@ -32,6 +32,7 @@ class Order(models.Model):
     products = models.ManyToManyField(Product, through=ProductQuantities)
     store = models.ForeignKey(Store)
 
+    name_on_card = models.CharField(max_length=255, null=True)
     credit_card_type = models.CharField(max_length=50, 
                                         choices=[(t,t) for t in ('Visa', 'MasterCard', 'American Express', 'Discover')],
                                         null=True)
@@ -74,13 +75,6 @@ class Order(models.Model):
         except ProductQuantities.DoesNotExist:
             pass
 
-
-
-
-
-
-
-
     @classmethod
     def get_cart(cls, store, user):
         cart, created = cls.objects.get_or_create(store=store, user=user, ordered_on__isnull=True)
@@ -88,5 +82,5 @@ class Order(models.Model):
 
    
     def __unicode__(self):
-        return self.user.username
+        return "%s %s - %s" % (self.id, self.user.username, self.ordered_on)
 

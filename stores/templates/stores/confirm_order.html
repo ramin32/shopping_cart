@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div id="order">
+    <h1><a href="{% url 'store' store.name %}">{{store.name}}</a> >> Please confirm your order </h1>
+
+    <div class="products">
+        {% for product_quantity in order.productquantities_set.all %}
+            <div class="product">
+                {{product_quantity.product.name}}
+                <img src="{{ product_quantity.product.image.url }}"/>
+                <div class="description">
+                    {{ product_quantity.product.description }}
+                </div>
+                <div class="price">
+                    {{ product_quantity.quantity }} X ${{ product_quantity.product.price }}
+                </div>
+
+                <a class="remove-from-cart" href="{% url 'remove_from_cart' store.name product_quantity.product.id %}">Remove</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="billing-information">
+        <h2> Billing Information </h2>
+        <div>
+            {{ order.name_on_card }}
+        </div>
+        <div>
+            {{ order.credit_card_type }} 
+        </div>
+        <div>
+            {{ order.credit_card_number|slice:"-4:" }} 
+        </div>
+        <div>
+            {{ order.security_number }} 
+        </div>
+        <div>
+            {{ order.expiration_month }} 
+        </div>
+        <div>
+            {{ order.expiration_year }} 
+        </div>
+        <div>
+            {{ order.address }} 
+        </div>
+        <div>
+            {{ order.city }} 
+        </div>
+        <div>
+            {{ order.state }} 
+        </div>
+        <div>
+            {{ order.zip_code }} 
+        </div>
+        <div>
+            {{ order.phone_number }} 
+        </div>
+
+    </div>
+    <div class="order-actions">
+        Total: ${{ order.total }}
+        <form class="single-button-form" method="post" action="{% url 'confirm_order' store.name order.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Confirm"/>
+        </form>
+        <form class="single-button-form"  method="post" action="{% url 'delete_order' store.name order.id %}">
+            {% csrf_token %}
+            <input type="submit" value="Cancel Order"/>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

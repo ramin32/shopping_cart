@@ -24,6 +24,14 @@
                </div>
             {% endif %}
         </header>
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         {% block body %}
         {% endblock %}
 
