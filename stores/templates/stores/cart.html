@@ -14,7 +14,7 @@
                     {{ product_quantity.product.description }}
                 </div>
                 <div class="price">
-                    {{ product_quantity.quantity }} X ${{ product_quantity.product.price }}
+                    {{ product_quantity.quantity }} X {{ product_quantity.product.price_string }}
                 </div>
 
                 <a class="remove-from-cart" href="{% url 'remove_from_cart' store.name product_quantity.product.id %}">Remove</a>
@@ -22,7 +22,7 @@
         {% endfor %}
     </div>
     <div class="cart-actions">
-        Total: ${{cart.total}}
+        Total: {{cart.total}}
         {% if cart.products.all %}
             <a href="#checkout" class="checkout" id="checkout-form-toggle">Checkout</a>
             <form id="checkout-form" {% if not checkout_form.errors %} class="hidden" {% endif %} 

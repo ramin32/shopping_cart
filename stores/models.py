@@ -3,6 +3,9 @@ from datetime import date
 from django.db import models
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+import locale
+
+locale.setlocale(locale.LC_ALL, '')
 
 
 class Store(models.Model):
@@ -18,6 +21,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product_images')
     quantity = models.IntegerField()
     store = models.ForeignKey(Store)
+
+    def price_string(self):
+         return locale.currency(self.price, grouping=True)
 
     def __unicode__(self):
         return self.name
@@ -53,7 +59,9 @@ class Order(models.Model):
 
 
     def total(self):
-        return sum([pq.product.price * pq.quantity for pq in self.productquantities_set.all()]) 
+         t = sum([pq.product.price * pq.quantity for pq in self.productquantities_set.all()]) 
+         return locale.currency(t, grouping=True)
+
 
     def add_product(self, product):
         product_quantity = None

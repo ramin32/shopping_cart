@@ -19,7 +19,7 @@
                <div class="welcome-line">
                     Welcome, {{user.username}}! 
                     {% if cart and store %}
-                    | <a href="{% url 'cart' store.name %}">Cart: $<span id="cart-total">{{cart.total}}</span></a>
+                    | <a href="{% url 'cart' store.name %}">Cart: <span id="cart-total">{{cart.total}}</span></a>
                     {% endif %}
                </div>
             {% endif %}

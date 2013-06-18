@@ -11,37 +11,37 @@ class ProductInline(admin.TabularInline):
     model = models.Product
     extra = 1
 
-class OrderInline(admin.TabularInline):
-    model = models.Order
-    extra = 0
-
-    inlines = [ProductInline]
-
-    def queryset(self, request):
-        qs = super(OrderInline, self).queryset(request)
-        return qs.filter(ordered_on__isnull=False).order_by('ordered_on')
+class ProductQuantitiesInline(admin.TabularInline):
+    model = models.ProductQuantities
+    extra = 1
 
 
 class StoreAdmin(admin.ModelAdmin):
-    inlines = [ProductInline, OrderInline]
-    list_filter = ('name', 'product__name')
-    list_display = ('name',)
+    inlines = [ProductInline]
+    list_filter = ['name']
+    list_display = ['name']
+    search_fields = ['name', 'product__name']
 
 
 admin.site.register(models.Store, StoreAdmin)
 
-'''
+class ProductAdmin(admin.ModelAdmin):
+    list_filter = ['store__name']
+    search_fields = ['name', 'description', 'store']
+    list_display = ['store', 'name', 'price_string', 'quantity']
 
-for store in models.Store.objects.all():
-    class OrdersAdmin(admin.ModelAdmin):
-        model = models.Order
-        class Meta:
-            verbose_name = '%s order' % store.name 
+admin.site.register(models.Product, ProductAdmin)
 
-        def queryset(self, request):
-            qs = super(OrdersAdmin, self).queryset(request)
-            return qs.filter(ordered_on__isnull=False, store=store).order_by('ordered_on')
+class OrdersAdmin(admin.ModelAdmin):
+    model = models.Order
+    inlines = [ProductQuantitiesInline]
+    list_filter = ['store__name']
+    search_fields = ['user__first_name', 'user__last_name', 'user__username', 'product__name'] 
+    list_display = ['store', 'user', 'ordered_on', 'total']
 
-    admin.site.register(models.Order, OrdersAdmin)
-'''
+    def queryset(self, request):
+        qs = super(OrdersAdmin, self).queryset(request)
+        return qs.filter(ordered_on__isnull=False).order_by('ordered_on')
+
+admin.site.register(models.Order, OrdersAdmin)
 
