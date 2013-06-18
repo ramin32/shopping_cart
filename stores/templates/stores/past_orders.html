@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div id="cart">
+    <h1><a href="{% url 'index' %}">{{store.name}}</a> >> Past Orders </h1>
+
+    {% for order in orders %}
+        <div class="products">
+            <h2>Order #: {{ order.id }}</h2>
+            {% for product_quantity in order.productquantities_set.all %}
+                <div class="product">
+                    {{product_quantity.product.name}}
+                    <img src="{{ product_quantity.product.image.url }}"/>
+                    <div class="description">
+                        {{ product_quantity.product.description }}
+                    </div>
+                    <div class="price">
+                        {{ product_quantity.quantity }} X {{ product_quantity.product.price_string }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="cart-actions">
+            Total: {{order.total}}
+            {% if order.shipped_on %}
+            Shipped On: {{ order.shipped_on }}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

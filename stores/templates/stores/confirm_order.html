@@ -3,7 +3,7 @@
 {% block body %}
 
 <div id="order">
-    <h1><a href="{% url 'store' store.name %}">{{store.name}}</a> >> Please confirm your order </h1>
+    <h1><a href="{% url 'index' %}">{{store.name}}</a> >> <a href="{% url 'cart' %}">cart</a> >> Please confirm your order </h1>
 
     <div class="products">
         {% for product_quantity in order.productquantities_set.all %}
@@ -17,7 +17,7 @@
                     {{ product_quantity.quantity }} X ${{ product_quantity.product.price }}
                 </div>
 
-                <a class="remove-from-cart" href="{% url 'remove_from_cart' store.name product_quantity.product.id %}">Remove</a>
+                <a class="remove-from-cart" href="{% url 'remove_from_cart' product_quantity.product.id %}">Remove</a>
             </div>
         {% endfor %}
     </div>
@@ -59,12 +59,12 @@
 
     </div>
     <div class="order-actions">
-        Total: ${{ order.total }}
-        <form class="single-button-form" method="post" action="{% url 'confirm_order' store.name order.id %}">
+        Total: {{ order.total }}
+        <form class="single-button-form" method="post" action="{% url 'confirm_order' order.id %}">
             {% csrf_token %}
             <input type="submit" value="Confirm"/>
         </form>
-        <form class="single-button-form"  method="post" action="{% url 'delete_order' store.name order.id %}">
+        <form class="single-button-form"  method="post" action="{% url 'delete_order' order.id %}">
             {% csrf_token %}
             <input type="submit" value="Cancel Order"/>
         </form>

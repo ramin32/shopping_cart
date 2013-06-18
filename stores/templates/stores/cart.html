@@ -3,7 +3,7 @@
 {% block body %}
 
 <div id="cart">
-    <h1><a href="{% url 'store' store.name %}">{{store.name}}</a> >> Your Cart </h1>
+    <h1><a href="{% url 'index' %}">{{store.name}}</a> >> Your Cart </h1>
 
     <div class="products">
         {% for product_quantity in cart.productquantities_set.all %}
@@ -17,7 +17,7 @@
                     {{ product_quantity.quantity }} X {{ product_quantity.product.price_string }}
                 </div>
 
-                <a class="remove-from-cart" href="{% url 'remove_from_cart' store.name product_quantity.product.id %}">Remove</a>
+                <a class="remove-from-cart" href="{% url 'remove_from_cart' product_quantity.product.id %}">Remove</a>
             </div>
         {% endfor %}
     </div>
@@ -27,7 +27,7 @@
             <a href="#checkout" class="checkout" id="checkout-form-toggle">Checkout</a>
             <form id="checkout-form" {% if not checkout_form.errors %} class="hidden" {% endif %} 
                   method="post" 
-                  action="{% url 'checkout_cart' store.name %}">
+                  action="{% url 'checkout_cart' %}">
                 <h2>Payment Information</h2>
                 {% csrf_token %}
                 {{ checkout_form.as_p }}
