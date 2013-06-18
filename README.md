@@ -3,9 +3,13 @@ To Run
 
 Configuration
 -------------
-1. pip install -r requirements.txt
-2. python manage.py syncdb
-3. python manage.py runserver
+1. sudo apt-get install python-virtualenv python-pip
+2. cd shopping_cart
+3. virtualenv ENV
+4. source ENV/bin/activate
+5. pip install -r requirements.txt
+6. python manage.py syncdb
+7. python manage.py runserver
 
 Admin
 -----
@@ -17,4 +21,3 @@ Admin
 Use
 ---
 1. Point browser to http://<store_name>.lvh.me:8000
-2. App should now be a fully functional shopping cart application.
