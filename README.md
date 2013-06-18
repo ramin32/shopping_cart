@@ -20,4 +20,4 @@ Admin
 
 Use
 ---
-1. Point browser to http://<store_name>.lvh.me:8000
+1. Point browser to http://[store_name].lvh.me:8000
