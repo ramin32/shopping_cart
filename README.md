@@ -16,5 +16,5 @@ Admin
 
 Use
 ---
-1. Point browser to http://<store_name>.lvh.me:8000
+1. Point browser to http://[store_name].lvh.me:8000
 2. App should now be a fully functional shopping cart application.
